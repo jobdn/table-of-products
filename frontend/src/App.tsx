@@ -10,10 +10,24 @@ interface ITableItem {
 
 const App: React.FC = () => {
   const [data, setData] = React.useState<ITableItem[]>();
+
   React.useEffect(() => {
-    axios("/api").then(({ data }) => console.log(data));
+    axios("/api").then(({ data }) => setData(data));
   }, []);
-  return <div>App</div>;
+
+  return (
+    <div>
+      {data?.length ? (
+        "Loading..."
+      ) : (
+        <ul>
+          {data?.map((item) => (
+            <li>{item.name}</li>
+          ))}
+        </ul>
+      )}
+    </div>
+  );
 };
 
 export default App;
