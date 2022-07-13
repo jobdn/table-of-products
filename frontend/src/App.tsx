@@ -1,7 +1,11 @@
-import axios from "axios";
 import React from "react";
+
+import axios from "axios";
+
 import { TablePagination } from "./components/Pagination";
 import { Table } from "./components/Table";
+import { fetchProductsThunk } from "./redux/reducers/products/fetch-products";
+import { useAppDispatch, useTypedSelector } from "./hooks/redux";
 
 interface ITableItem {
   id: number;
@@ -12,6 +16,15 @@ interface ITableItem {
 }
 
 const App: React.FC = () => {
+  const dispatch = useAppDispatch();
+  const { page, search } = useTypedSelector((state) => state.products);
+
+  React.useEffect(() => {
+    dispatch(fetchProductsThunk(page, search));
+  }, []);
+
+  //===============================================================
+
   const [date, setDate] = React.useState<Date>(new Date());
   const [name, setName] = React.useState("");
   const [amount, setAmount] = React.useState(0);
@@ -21,8 +34,6 @@ const App: React.FC = () => {
     switch (event.target.name) {
       case "date":
         const date = new Date(event.target.value);
-        console.log(date);
-
         setDate(date);
         break;
       case "name":
@@ -50,8 +61,6 @@ const App: React.FC = () => {
       distance,
     });
 
-    console.log(res.data);
-
     setName("");
     setAmount(0);
     setDistance(0);
@@ -59,10 +68,9 @@ const App: React.FC = () => {
 
   const getAllProducts = async () => {
     const allProducts = await axios.get<ITableItem[]>("/api/products");
-    console.log(allProducts);
   };
 
-  const onPageChange = () => {};
+  // =============================================================
 
   return (
     <div>

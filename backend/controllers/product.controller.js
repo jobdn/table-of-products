@@ -14,12 +14,17 @@ class ProductController {
     res.json(newProduct.rows[0]);
   }
 
-  async getProducts(_, res) {
-    const allProducts = await db.query("select * from product");
+  async getProducts(req, res) {
+    const queryResult = await db.query("select * from product");
+    const LIMIT = 10;
+    const { page, search } = req.body;
 
-    // setTimeout(() => {
-    res.json(allProducts.rows);
-    // }, 1000);
+    const totalProducts = queryResult.rowCount;
+    const products = queryResult.rows;
+
+    setTimeout(() => {
+      res.json({ products, totalProducts });
+    }, 1000);
   }
 }
 
