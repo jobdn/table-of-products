@@ -1,5 +1,5 @@
 const db = require("../db");
-
+const constants = require("../contants/products.contants");
 class ProductController {
   constructor() {}
   async createProduct(req, res) {
@@ -15,12 +15,19 @@ class ProductController {
   }
 
   async getProducts(req, res) {
-    const queryResult = await db.query("select * from product");
-    const LIMIT = 10;
-    const { page, search } = req.body;
+    let queryResult;
+    const { page, search } = req.params;
+
+    if (search) {
+      queryResult = await db.query("select * from product where ");
+    } else {
+      queryResult = await db.query("select * from product");
+    }
 
     const totalProducts = queryResult.rowCount;
-    const products = queryResult.rows;
+    const start = (page - 1) * constants.LIMIT;
+    const end = page * constants.LIMIT;
+    const products = queryResult.rows.slice(start, end);
 
     setTimeout(() => {
       res.json({ products, totalProducts });
