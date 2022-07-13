@@ -1,5 +1,6 @@
 const Pool = require("pg").Pool;
 
+// Adjust this object
 const pool = new Pool({
   user: "postgres",
   password: "postgres",

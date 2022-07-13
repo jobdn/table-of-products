@@ -19,6 +19,9 @@
 
 ## Description
 
+1. First of all, you need to have the postgres on your computer.
+2. Then configure the `Pool` object in `./backend/db.js` file to connect to your database.
+
 ## Distribute
 
 - []()
