@@ -1,5 +1,7 @@
-import axios, { AxiosResponse } from "axios";
+import axios from "axios";
 import React from "react";
+import { TablePagination } from "./components/Pagination";
+import { Table } from "./components/Table";
 
 interface ITableItem {
   id: number;
@@ -60,9 +62,11 @@ const App: React.FC = () => {
     console.log(allProducts);
   };
 
+  const onPageChange = () => {};
+
   return (
     <div>
-      <form>
+      {/* <form>
         <div className="form__control">
           <label htmlFor="date">Date: </label>
           <input
@@ -104,7 +108,9 @@ const App: React.FC = () => {
         </div>
       </form>
 
-      <button onClick={getAllProducts}>Get all products</button>
+      <button onClick={getAllProducts}>Get all products</button> */}
+      <Table />
+      <TablePagination page={1} total={61} onChange={() => {}} />
     </div>
   );
 };

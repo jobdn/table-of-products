@@ -17,9 +17,9 @@ class ProductController {
   async getProducts(_, res) {
     const allProducts = await db.query("select * from product");
 
-    console.log(allProducts);
-
+    // setTimeout(() => {
     res.json(allProducts.rows);
+    // }, 1000);
   }
 }
 
