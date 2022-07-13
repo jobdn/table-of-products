@@ -6,6 +6,7 @@ import { TablePagination } from "./components/Pagination";
 import { Table } from "./components/Table";
 import { fetchProductsThunk } from "./redux/reducers/products/fetch-products";
 import { useAppDispatch, useTypedSelector } from "./hooks/redux";
+import { selectProducts } from "./redux/reducers/products/selectors";
 
 interface ITableItem {
   id: number;
@@ -17,7 +18,7 @@ interface ITableItem {
 
 const App: React.FC = () => {
   const dispatch = useAppDispatch();
-  const { page, search } = useTypedSelector((state) => state.products);
+  const { page, search } = useTypedSelector(selectProducts);
 
   React.useEffect(() => {
     dispatch(fetchProductsThunk(page, search));

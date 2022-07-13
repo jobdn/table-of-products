@@ -1,12 +1,21 @@
 .pagination {
   padding-top: 10px;
+
   .item {
     padding: 10px 15px;
     border: 1px solid black;
     display: inline-block;
     background-color: #ccc;
     cursor: pointer;
+    transition: 0.3s;
+
+    &Active {
+      @extend .item;
+      background-color: #eee;
+    }
+
     &:hover {
+      transition: 0.3s;
       background-color: #eee;
     }
   }

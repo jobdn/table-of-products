@@ -1,11 +1,9 @@
-import axios from "axios";
 import React from "react";
 import { useTypedSelector } from "../../hooks/redux";
+import { selectProducts } from "../../redux/reducers/products/selectors";
 
 export const Table: React.FC = () => {
-  const { products, isLoading, error } = useTypedSelector(
-    (state) => state.products
-  );
+  const { products, isLoading, error } = useTypedSelector(selectProducts);
 
   if (isLoading) return <div>Loading...</div>;
   if (error) {
