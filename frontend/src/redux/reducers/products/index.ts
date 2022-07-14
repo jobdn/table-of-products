@@ -8,28 +8,21 @@ const initialState: IProductsState = {
   isLoading: false,
   error: null,
   page: 1,
-  filter: {
-    col: "name",
-    condition: "=",
-    value: "",
-  },
 };
 
 const productsSlice = createSlice({
   name: "products",
   initialState,
   reducers: {
-    fetchProducts(
-      state,
-      action: PayloadAction<{ page: number; search: string }>
-    ) {
+    fetchProducts(state, action: PayloadAction<number>) {
       state.isLoading = true;
-      state.page = action.payload.page;
+      state.page = action.payload;
     },
     fetchProductsSuccess(
       state,
       action: PayloadAction<{ products: IProduct[]; totalProducts: number }>
     ) {
+      state.error = "";
       state.isLoading = false;
       state.products = action.payload.products;
       state.totalProducts = action.payload.totalProducts;

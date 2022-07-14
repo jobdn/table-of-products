@@ -1,4 +1,3 @@
-import { IFilter } from "./IFilter";
 import { IProduct } from "./IProduct";
 
 export interface IProductsState {
@@ -7,5 +6,4 @@ export interface IProductsState {
   isLoading: boolean;
   error: string | null;
   page: number;
-  filter: IFilter;
 }

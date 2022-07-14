@@ -2,7 +2,7 @@ import React from "react";
 
 import axios from "axios";
 
-import { TablePagination } from "./components/Pagination";
+import { TablePagination } from "./components/TablePagination";
 import { Table } from "./components/Table";
 import { fetchProductsThunk } from "./redux/reducers/products/fetch-products";
 import { useAppDispatch, useTypedSelector } from "./hooks/redux";
@@ -78,7 +78,7 @@ const App: React.FC = () => {
 
   return (
     <div>
-      <form>
+      {/* <form>
         <div className="form__control">
           <label htmlFor="date">Date: </label>
           <input
@@ -120,7 +120,7 @@ const App: React.FC = () => {
         </div>
       </form>
 
-      <button onClick={getAllProducts}>Get all products</button>
+      <button onClick={getAllProducts}>Get all products</button> */}
       <Filter />
       <Table />
       <TablePagination />

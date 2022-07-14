@@ -1,6 +1,7 @@
 import React from "react";
 import { LIMIT } from "../../contants/products.contants";
 import { useAppDispatch, useTypedSelector } from "../../hooks/redux";
+import { selectFilter } from "../../redux/reducers/filter/selector";
 import { fetchProductsThunk } from "../../redux/reducers/products/fetch-products";
 import { selectProducts } from "../../redux/reducers/products/selectors";
 import styles from "./TablePagination.module.scss";
@@ -22,6 +23,8 @@ export const TablePagination: React.FC = () => {
 const PaginationItem: React.FC<{ pageIndex: number }> = React.memo(
   ({ pageIndex }) => {
     const { page } = useTypedSelector(selectProducts);
+    const { type, col, condition, filterValue } =
+      useTypedSelector(selectFilter);
     const dispatch = useAppDispatch();
 
     const isActive = page === pageIndex ? true : false;
@@ -29,7 +32,14 @@ const PaginationItem: React.FC<{ pageIndex: number }> = React.memo(
 
     const onChangePage = (clickedPage: number) => {
       if (clickedPage !== page) {
-        dispatch(fetchProductsThunk(clickedPage));
+        dispatch(
+          fetchProductsThunk(clickedPage, {
+            type,
+            col,
+            condition,
+            filterValue,
+          })
+        );
       }
     };
 

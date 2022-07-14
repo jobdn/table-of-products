@@ -16,12 +16,31 @@ class ProductController {
   }
 
   async getProducts(req, res) {
-    let queryResult;
-    const { page, search } = req.query;
+    let queryResult = {};
+    const { page, colType, col, condition, filterValue = "" } = req.query;
 
-    // TODO: change table name
-    if (search) {
-      queryResult = await db.query("select * from product where ");
+    if (colType === "int" && filterValue) {
+      if (condition === "like") {
+        queryResult = await db.query(
+          `select * from product where cast(${col} as varchar) ${condition} '%${filterValue}%'`
+        );
+      } else {
+        if (parseFloat(filterValue)) {
+          queryResult = await db.query(
+            `select * from product where ${col} ${condition} ${filterValue}`
+          );
+        } else {
+          queryResult.rows = [];
+        }
+      }
+    } else if (colType === "varchar") {
+      if (condition === "like") {
+        const queryString = `select * from product where ${col} ${condition} '%${filterValue}%'`;
+        queryResult = await db.query(queryString);
+      } else {
+        const queryString = `select * from product where ${col} ${condition} '${filterValue}'`;
+        queryResult = await db.query(queryString);
+      }
     } else {
       queryResult = await db.query("select * from product");
     }
