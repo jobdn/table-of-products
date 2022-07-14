@@ -16,6 +16,7 @@ class ProductController {
   }
 
   async getProducts(req, res) {
+    // TODO: You need to change the name of the table with data
     let queryResult = {};
     const { page, colType, col, condition, filterValue = "" } = req.query;
 

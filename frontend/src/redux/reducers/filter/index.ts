@@ -9,7 +9,7 @@ import { IFilterState } from "../../../models/IFilterState";
 const initialState: IFilterState = {
   type: "varchar",
   col: "name",
-  condition: "=",
+  condition: "like",
   filterValue: "",
 };
 
@@ -26,11 +26,12 @@ const filterSlice = createSlice({
     setCondition(state, action: PayloadAction<AvailableFilterConditions>) {
       state.condition = action.payload;
     },
-    setValue(state, action: PayloadAction<number | string>) {
+    setFilterValue(state, action: PayloadAction<number | string>) {
       state.filterValue = action.payload;
     },
   },
 });
 
-export const { setCol, setCondition, setValue, setType } = filterSlice.actions;
+export const { setCol, setCondition, setFilterValue, setType } =
+  filterSlice.actions;
 export default filterSlice.reducer;

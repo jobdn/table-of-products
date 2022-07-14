@@ -23,15 +23,19 @@ export const Table: React.FC = () => {
           </tr>
         </thead>
         <tbody>
-          {products.map((item) => (
-            <tr key={item.id}>
-              <td>{item.id}</td>
-              <td>{item.date.toString()}</td>
-              <td>{item.name}</td>
-              <td>{item.amount}</td>
-              <td>{item.distance}</td>
-            </tr>
-          ))}
+          {products.length ? (
+            products.map((item) => (
+              <tr key={item.id}>
+                <td>{item.id}</td>
+                <td>{item.date.toString()}</td>
+                <td>{item.name}</td>
+                <td>{item.amount}</td>
+                <td>{item.distance}</td>
+              </tr>
+            ))
+          ) : (
+            <tr>There is not such data</tr>
+          )}
         </tbody>
       </table>
     </div>
