@@ -8,7 +8,11 @@ const initialState: IProductsState = {
   isLoading: false,
   error: null,
   page: 1,
-  search: "",
+  filter: {
+    col: "name",
+    condition: "=",
+    value: "",
+  },
 };
 
 const productsSlice = createSlice({
@@ -21,7 +25,6 @@ const productsSlice = createSlice({
     ) {
       state.isLoading = true;
       state.page = action.payload.page;
-      state.search = action.payload.search;
     },
     fetchProductsSuccess(
       state,

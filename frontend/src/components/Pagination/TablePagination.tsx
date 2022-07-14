@@ -5,11 +5,7 @@ import { fetchProductsThunk } from "../../redux/reducers/products/fetch-products
 import { selectProducts } from "../../redux/reducers/products/selectors";
 import styles from "./TablePagination.module.scss";
 
-export const TablePagination: React.FC<{
-  total: number;
-  page: number;
-  onChange: () => void;
-}> = () => {
+export const TablePagination: React.FC = () => {
   const { totalProducts } = useTypedSelector(selectProducts);
 
   const pageAmount = Math.ceil(totalProducts / LIMIT);

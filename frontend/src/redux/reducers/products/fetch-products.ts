@@ -8,8 +8,9 @@ export const fetchProductsThunk =
   async (dispatch: AppDispath) => {
     try {
       dispatch(fetchProducts({ page, search }));
+      const baseURL = "/api/products";
       const { data }: AxiosResponse<IFetchProductsResponse> = await axios.get(
-        `/api/products/${page}/${search}`
+        `${baseURL}?page=${page}&search=${search}`
       );
 
       dispatch(

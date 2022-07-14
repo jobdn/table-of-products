@@ -7,6 +7,7 @@ import { Table } from "./components/Table";
 import { fetchProductsThunk } from "./redux/reducers/products/fetch-products";
 import { useAppDispatch, useTypedSelector } from "./hooks/redux";
 import { selectProducts } from "./redux/reducers/products/selectors";
+import { Filter } from "./components/Filter";
 
 interface ITableItem {
   id: number;
@@ -18,15 +19,15 @@ interface ITableItem {
 
 const App: React.FC = () => {
   const dispatch = useAppDispatch();
-  const { page, search } = useTypedSelector(selectProducts);
+  const { page } = useTypedSelector(selectProducts);
 
   React.useEffect(() => {
-    dispatch(fetchProductsThunk(page, search));
+    dispatch(fetchProductsThunk(page));
   }, []);
 
   //===============================================================
 
-  const [date, setDate] = React.useState<Date>(new Date());
+  const [date, setDate] = React.useState("");
   const [name, setName] = React.useState("");
   const [amount, setAmount] = React.useState(0);
   const [distance, setDistance] = React.useState(0);
@@ -35,7 +36,9 @@ const App: React.FC = () => {
     switch (event.target.name) {
       case "date":
         const date = new Date(event.target.value);
-        setDate(date);
+        const stringDate = `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`;
+
+        setDate(stringDate);
         break;
       case "name":
         setName(event.target.value);
@@ -75,7 +78,7 @@ const App: React.FC = () => {
 
   return (
     <div>
-      {/* <form>
+      <form>
         <div className="form__control">
           <label htmlFor="date">Date: </label>
           <input
@@ -117,9 +120,10 @@ const App: React.FC = () => {
         </div>
       </form>
 
-      <button onClick={getAllProducts}>Get all products</button> */}
+      <button onClick={getAllProducts}>Get all products</button>
+      <Filter />
       <Table />
-      <TablePagination page={1} total={61} onChange={() => {}} />
+      <TablePagination />
     </div>
   );
 };

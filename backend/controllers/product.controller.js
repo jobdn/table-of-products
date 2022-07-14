@@ -1,10 +1,11 @@
 const db = require("../db");
-const constants = require("../contants/products.contants");
+const constants = require("../constants/products.constants");
 class ProductController {
   constructor() {}
   async createProduct(req, res) {
     const { date, name, amount, distance } = req.body;
 
+    // TODO: change table name
     const queryText = `insert into product (date, name, amount, distance) values($1, $2, $3, $4) returning *`;
 
     const values = [date, name, amount, distance];
@@ -16,8 +17,9 @@ class ProductController {
 
   async getProducts(req, res) {
     let queryResult;
-    const { page, search } = req.params;
+    const { page, search } = req.query;
 
+    // TODO: change table name
     if (search) {
       queryResult = await db.query("select * from product where ");
     } else {
