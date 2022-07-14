@@ -33,7 +33,7 @@ export const Filter: React.FC = () => {
   }, [filterValue, col, condition]);
 
   return (
-    <div>
+    <div style={{ paddingBottom: "20px" }}>
       <ColSelect />
       <ConditionSelect />
       <FilterInput />

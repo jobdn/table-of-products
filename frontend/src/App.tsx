@@ -8,6 +8,8 @@ import { TablePagination } from "./components/TablePagination";
 import { Table } from "./components/Table";
 import { Filter } from "./components/Filter";
 
+import "./sass/index.scss";
+
 const App: React.FC = () => {
   const dispatch = useAppDispatch();
   const { page } = useTypedSelector(selectProducts);
@@ -17,7 +19,8 @@ const App: React.FC = () => {
   }, []);
 
   return (
-    <div className="App">
+    <div>
+      <h1>Product table</h1>
       <Filter />
       <Table />
       <TablePagination />

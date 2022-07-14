@@ -5,7 +5,7 @@ class ProductController {
   async createProduct(req, res) {
     const { date, name, amount, distance } = req.body;
 
-    // TODO: change table name
+    // TODO: You need to change the name of the table with data
     const queryText = `insert into product (date, name, amount, distance) values($1, $2, $3, $4) returning *`;
 
     const values = [date, name, amount, distance];
@@ -20,7 +20,7 @@ class ProductController {
     let queryResult = {};
     const { page, colType, col, condition, filterValue = "" } = req.query;
 
-    if (colType === "int" && filterValue) {
+    if (colType === "int") {
       if (condition === "like") {
         queryResult = await db.query(
           `select * from product where cast(${col} as varchar) ${condition} '%${filterValue}%'`

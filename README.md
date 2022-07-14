@@ -19,8 +19,28 @@
 
 ## Description
 
+### Configure database using postgres
+
 1. First of all, you need to have the postgres on your computer.
-2. Then configure the `Pool` object in `./backend/db.js` file to connect to your database.
+2. Create table in your database. Check the `backend/database.sql`. In this project, the table in the database is called `product`.
+3. Then configure the `Pool` object in `./backend/db.js` file to connect to your database. And the database in this project is called `new_db`
+4. Add some data to database.
+5. Run follow commands:
+
+```shell
+cd ./backend
+npm i
+npm start
+```
+
+### Frontend
+
+1. Run frontend
+
+```bash
+npm i
+npm start
+```
 
 ## Distribute
 
