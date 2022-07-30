@@ -19,6 +19,10 @@
 
 ## Description
 
+This is a test task. I have implemented the frontend and backend part of the application. 
+- The backend is implemented on **express** also I use **posgresql** for database managment.
+- The user interface is implemented on **React+Typescript** and **Redux/toolkit** is used to manage application data.
+
 ### Configure database using postgres
 
 1. First of all, you need to have the postgres on your computer.
